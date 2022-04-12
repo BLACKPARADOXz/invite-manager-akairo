@@ -17,7 +17,6 @@ mongoose.connect(ayar.bot.mongodb).then(() => {
 });
 
 module.exports = class BotClient extends AkairoClient {
-    slashCommands = new Collection();
     config = ayar;
     /**
      * @type { Collection<string, Invite> } invites
@@ -67,38 +66,6 @@ module.exports = class BotClient extends AkairoClient {
         process.on('unhandledRejection', (err) => console.error(err));
     }
 
-     async _initSlashCommands() {
-        //if (!this.application?.owner) await this.application?.fetch();
-        const commands = [];
-        const commandFiles = fs.readdirSync('./src/SlashKomutlar').filter(file => file.endsWith('.js'));
-    
-        for (const file of commandFiles) {
-            const command = require(`../SlashKomutlar/${file}`);
-            if (command.data && command.data.name) {
-                this.slashCommands.set(command.data.name, command);
-                commands.push(command.data.toJSON());
-            }
-        }
-    
-        const rest = new REST({ version: '9' }).setToken(this.token);
-        
-            try {
-                console.log('Started refreshing application (/) commands.');
-        
-                await rest.put(
-                    //@ts-ignore
-                    Routes.applicationCommands(this.user.id),
-                    { body: commands },
-                );
-        
-                console.log(`${commands.length} komut yüklenicek`);
-            } catch (error) {
-                console.error(error);
-            }
-
-        console.log("Slash Command handler yüklendi.")
-    }
-
     async setup() {
         this.commandHandler.useListenerHandler(this.listenerHandler);
         this.listenerHandler.setEmitters({
@@ -114,7 +81,7 @@ module.exports = class BotClient extends AkairoClient {
 
     async start() {
         await this.setup();
-        return this.login(ayar.bot.token).then(async () => await this._initSlashCommands()).catch(() => console.log(red("Ayarlar.yaml' da geçerli bir token girmeniz gerekiyor.")))
+        return this.login(ayar.bot.token).catch(() => console.log(red("Ayarlar.yaml' da geçerli bir token girmeniz gerekiyor.")))
     }
 
 }
