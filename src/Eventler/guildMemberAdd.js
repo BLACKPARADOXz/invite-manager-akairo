@@ -38,11 +38,12 @@ module.exports = class extends Listener {
             });
 
 
+            /*
             let vanish = false;
 
             if(!invite) {
                 vanish=true;
-            }
+            }*/
 
             const log = member.guild.channels.cache.get(logId);
 
