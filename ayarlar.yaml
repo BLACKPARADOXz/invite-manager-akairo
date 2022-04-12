@@ -1,6 +1,6 @@
 bot:
- token: ""
- mongodb: ""
+ token: "SÜPER GİZLİ TOKENİN"
+ mongodb: "MONGO DB LİNK"
  prefix: "!"
  durum: "online" #online idle invisible dnd koyulabilir
  aktivite: "PLAYING" #PLAYING STREAMING LISTENING WATCHING CUSTOM_STATUS COMPETING 'den biri koyulabilir
