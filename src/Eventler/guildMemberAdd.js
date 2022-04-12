@@ -26,9 +26,6 @@ module.exports = class extends Listener {
             }
         };
 
-
-        console.log(logId,"BU NASIL")
-
         if(logId) {
 
             const old_invites = this.client.invites[member.guild.id];
@@ -40,7 +37,6 @@ module.exports = class extends Listener {
                 return old_invite && inv.uses > old_invite.uses; 
             });
 
-            console.log(!!invite,"DAVET VAR MI?")
 
             let vanish = false;
 
@@ -50,7 +46,6 @@ module.exports = class extends Listener {
 
             const log = member.guild.channels.cache.get(logId);
 
-            console.log(!!log,"KANAL VAR")
 
             if(log) {
                 log.send(`📥 \`${member.user.tag}\` sunucuya **${invite.code}** koduyla ${invite ? `tarafından \`${invite.inviter.tag}\`` : "" } davet edildi`);
