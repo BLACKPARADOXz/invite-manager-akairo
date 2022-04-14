@@ -1,6 +1,5 @@
 const { Listener } = require('discord-akairo');
 const { Message } = require('discord.js');
-const pre = require('../Models/tagSchema');
 
 module.exports = class extends Listener {
     constructor() {
