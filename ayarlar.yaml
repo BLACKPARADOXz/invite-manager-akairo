@@ -8,8 +8,8 @@ bot:
   - "KULLANICI ID 1"
   - "KULLANICI ID 2"
 
-server: #TEK BİR SUNUCU İÇİN KULLANABİLMEK İÇİN invite_log_channel karşısına yalnızca kanal id girmeniz yeterlidir
- invite_log_channel: #Mevcut durumda her sunucu için ayarlanabilir herhalde bu şekilde kullanabilirsiniz
+server:
+ invite_log_channel: #Her sunucu için ayarlanabilir haldedir, Birden fazla sunucu için ayarlamayacaksanız alttan bir satır silebilirsiniz.
   - "SUNUCU_ID": "KANAL ID"
   - "SUNUCU ID": "KANAL ID"
    
