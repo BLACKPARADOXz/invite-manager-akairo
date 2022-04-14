@@ -18,6 +18,7 @@ module.exports = class extends Listener {
         const value = this.client.config.server.invite_log_channel;
         let logId = value;
         
+        //Ayarlar.yaml'daki invite_log_channel değerini ayrıştırma kısmı
         if(Array.isArray(value)) {
             const obj = value.find(obj => obj[member.guild.id]);
 
@@ -31,17 +32,12 @@ module.exports = class extends Listener {
             const old_invites = this.client.invites[member.guild.id];
             const updated_invites = await member.guild.invites.fetch();
             
+            //Davetlerin önceki haliyle güncel halinin karşılaştırılması yapılarak kullanılan davet bulunur
             const invite = old_invites ? updated_invites.find(inv => {
                 const old_invite = old_invites.get(inv.code);
 
                 return old_invite && inv.uses > old_invite.uses; 
             }) : null;
-
-            let vanish = false;
-
-            if(!invite) {
-                vanish=true;
-            }
 
             const log = member.guild.channels.cache.get(logId);
 
